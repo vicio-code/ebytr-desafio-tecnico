@@ -24,6 +24,8 @@ async function getTasks() {
 }
 
 async function updateTask({ content, status, id }: IPayload) {
+    console.log(id);
+    
     const updatedTask = await prisma.task.update({
         where: { id },
         data: {
@@ -31,14 +33,13 @@ async function updateTask({ content, status, id }: IPayload) {
             status
         }
     })
-    return updateTask
+    return updatedTask
 }
 
 async function deleteTask(id: number) {
-    const deletedTask = await prisma.task.delete({
+    await prisma.task.delete({
         where: { id }
     })
-    return deleteTask
 }
 
 export {
